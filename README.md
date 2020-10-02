@@ -29,10 +29,10 @@ for file in os.listdir(path):
     d_init[file]['Date File created'] = pd.to_datetime(d_init[file]['Date File created'])
     d_init[file]['Date File created'] = d_init[file]['Date File created'].dt.date
 ```
-```
+```ruby
 df_concat_raw = pd.concat(d_init.values())
 ```
-```
+```ruby
 df_concat_filtered = df_concat_raw.merge(df_shelv,on='DSP_LOCN',how='left')
 df_concat_filtered = df_concat_filtered.merge(df_S_NS,on='ITEM_NAME',how='left' )
 df_concat_filtered = df_concat_filtered.merge(df_FPE[['DSP_LOCN','HP/FP']],on='DSP_LOCN',how='left' )
