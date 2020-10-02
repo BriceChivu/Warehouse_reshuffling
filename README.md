@@ -17,3 +17,38 @@ Each aisle has of two sides: even (left) and odd (right). Each of those sides ar
 ### 3. Data Analysis
 Getting a snapshot of the current warehouse inventory is nice to have a first idea of the brands occupancy but it would not necessarily show the real picture since the snapshot could have been taken just after a big shipment (in that case the occupancy would be low) or just after an important volume of good receiving (the occupancy would be high). <br/>
 To counter that, I considered a discrete distribution of the warehouse allocation over the time and looked at the average.
+
+I gathered few snapshots of the inventory for each month and combined them into a big dictionnary of dataframes.
+```ruby
+path = "C:\\Users\\btg168\\Desktop\\Inventory reports test\\"
+d_init={}
+
+for file in os.listdir(path):
+    d_init[file] = pd.read_excel(path+file)
+    d_init[file]['Date File created'] = time.ctime(os.path.getmtime(path+file))
+    d_init[file]['Date File created'] = pd.to_datetime(d_init[file]['Date File created'])
+    d_init[file]['Date File created'] = d_init[file]['Date File created'].dt.date
+```
+```
+df_concat_raw = pd.concat(d_init.values())
+```
+```
+df_concat_filtered = df_concat_raw.merge(df_shelv,on='DSP_LOCN',how='left')
+df_concat_filtered = df_concat_filtered.merge(df_S_NS,on='ITEM_NAME',how='left' )
+df_concat_filtered = df_concat_filtered.merge(df_FPE[['DSP_LOCN','HP/FP']],on='DSP_LOCN',how='left' )
+df_concat_filtered.dropna(subset=['DSP_LOCN'],inplace=True)
+df_concat_filtered[['REF_FIELD1']] = df_concat_filtered['REF_FIELD1'].replace(to_replace=\
+                                                                          ['HR','R. LAUREN','URBAN DECAY','KERASTASE',\
+                                                                           'SKINCEUTICALS','Martin MARGIELA','VICHY',\
+                                                                           'Atelier Cologne','VIKTOR ET ROLF',\
+                                                                           'ROCHE POSAY','HOUSE 99',\
+                                                                           'IMARQUES INTER-DEPARTMENT','CLARISONIC']\
+                                                                          ,value = 'Mixed Brands')
+df_concat_filtered['to keep'] = df_concat_filtered['DSP_LOCN'].apply(lambda x: False if len(x)-sum(c.isdigit() for c in x)>2 else True)
+df_concat_filtered = df_concat_filtered.loc[(df_concat_filtered.DSP_LOCN.str[:2] != 'LT')\
+                                        & (df_concat_filtered['INVENTORY_TYPE']=='U') & (df_concat_filtered['ZINDEX']==1)\
+                                        & (df_concat_filtered['Shelving'].isna()) & (df_concat_filtered['to keep']== True)\
+                                        & (df_concat_filtered.DSP_LOCN.str[:1] == '4')\
+                                        & (df_concat_filtered['REF_FIELD1'] != "L'OREAL PARIS")]
+df_concat_filtered = df_concat_filtered[['REF_FIELD1','DSP_LOCN','ITEM_NAME','SALE_GRP','Date File created','HP/FP']]
+```
