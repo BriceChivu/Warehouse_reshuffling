@@ -1,4 +1,4 @@
-# Data Warehouse visualization
+# Brands occupancy visualization
 
 In order to have an efficiently organized warehouse, regular housekeepings are required. They mainly consist of rethinking the brands space disposition inside the racks.
 
