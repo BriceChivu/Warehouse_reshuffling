@@ -19,7 +19,9 @@ Getting a snapshot of the current warehouse inventory is nice to have a first id
 To counter that, I considered a discrete distribution of the warehouse allocation over the time and looked at the average.
 
 I gathered few snapshots of the inventory for each month and combined them into a big dictionnary of dataframes.
+
 ```ruby
+# Reading all the snapshots inventory and creating the dictionnary d_init to store them
 path = "C:\\Users\\btg168\\Desktop\\Inventory reports test\\"
 d_init={}
 
@@ -30,9 +32,11 @@ for file in os.listdir(path):
     d_init[file]['Date File created'] = d_init[file]['Date File created'].dt.date
 ```
 ```ruby
+# Concatenating all the dataframes from the dictionnary into one big dataframe called df_concat_raw
 df_concat_raw = pd.concat(d_init.values())
 ```
 ```ruby
+
 df_concat_filtered = df_concat_raw.merge(df_shelv,on='DSP_LOCN',how='left')
 df_concat_filtered = df_concat_filtered.merge(df_S_NS,on='ITEM_NAME',how='left' )
 df_concat_filtered = df_concat_filtered.merge(df_FPE[['DSP_LOCN','HP/FP']],on='DSP_LOCN',how='left' )
