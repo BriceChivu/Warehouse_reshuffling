@@ -16,4 +16,4 @@ Each aisle has of two sides: even (left) and odd (right). Each of those sides ar
 
 ### 3. Data Analysis
 Getting a snapshot of the current warehouse inventory is nice to have a first idea of the brands occupancy but it would not necessarily show the real picture since the snapshot could have been taken just after a big shipement (in that case the occupancy would be low) or just after an important volume of good receiving (the occupancy would be high). <br/>
-To counter that, I considered a discrete distribution of the warehouse allocation over the time and took the average.
+To counter that, I considered a discrete distribution of the warehouse allocation over the time and looked at the average.
