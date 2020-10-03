@@ -1,4 +1,4 @@
-# Brands occupancy and warehouse reshuffling 
+# Brands occupancy visualization and warehouse reshuffling 
 
 In order to have an efficiently organized warehouse, regular housekeepings are required. They mainly consist of rethinking the brands space disposition inside the racks.
 
