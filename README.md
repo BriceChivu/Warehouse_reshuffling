@@ -82,7 +82,7 @@ data = pd.DataFrame({'REF_FIELD1':['Mixed Brands','BIOTHERM','SHU UEMURA','YSL',
 
 df_master
 ```
-<img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/df_master.png" alt="alt text" width="300" height="260"> <br/>
+<img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/df_master.png" alt="alt text" width="452" height="345"> <br/>
 
 Finally, we will plot a bar graph for each brand to show this evolution of the ratio occupancy.
 
