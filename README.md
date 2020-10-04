@@ -109,4 +109,4 @@ for ref in list(df_concat_filtered['REF_FIELD1'].unique()):
     
     i += 1
 ```
-<img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/Brands occupancy analysis.png" alt="alt text" width="500" height="400"> <br/>
+<img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/Brands occupancy analysis.png" alt="alt text" width="733" height="2094"> <br/>
