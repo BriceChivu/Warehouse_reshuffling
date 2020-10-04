@@ -74,7 +74,7 @@ Great! We have now a big dataframe df_concat_filtered containing all the differe
 ```ruby
 # Creating the master file that regroups each brand max occupancy
 
-data = pd.DataFrame({'REF_FIELD1':['Mixed Brands','BIOTHERM','SHU UEMURA','YSL','G.ARMANI','KIEHLS',\
+data = pd.DataFrame({'REF_FIELD1':['Mixed Brands','BIOTHERM','SHU UEMURA','YSL','G. ARMANI','KIEHLS',\
                                    'LANCOME',"L'OREAL PARIS"],'Max Occupancy':[1540,1491,1190,2156,1652,3948,5087,4533]})
 ```
 ```ruby
@@ -109,3 +109,4 @@ for ref in list(df_concat_filtered['REF_FIELD1'].unique()):
     
     i += 1
 ```
+<img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/Brands occupancy analysis.png" alt="alt text" width="500" height="400"> <br/>
