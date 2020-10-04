@@ -89,23 +89,23 @@ Finally, we will plot a bar graph for each brand to show this evolution of the r
 ```ruby
 # Displaying each brand plot
 
-fig,axes = plt.subplots(len(df_concat_filtered['REF_FIELD1'].unique()),figsize=(12,30))
-fig.tight_layout(pad=7.0)
+fig, axes = plt.subplots(len(df_concat_filtered['REF_FIELD1'].unique()), figsize = (12,30))
+fig.tight_layout(pad = 7.0)
 i = 0
 
 for ref in list(df_concat_filtered['REF_FIELD1'].unique()):
-    df_plot = df_concat_filtered[df_concat_filtered['REF_FIELD1'] ==f'{ref}'\
+    df_plot = df_concat_filtered[df_concat_filtered['REF_FIELD1'] == f'{ref}'\
                                 ].groupby(['REF_FIELD1','Date File created'])[['DSP_LOCN']].nunique().reset_index()
     df_plot = df_plot.merge(df_master, on='REF_FIELD1', how='left')
-    df_plot['Ratio'] = df_plot.apply(lambda x: x['DSP_LOCN']*100/x['Max Occupancy'], axis=1)
+    df_plot['Ratio'] = df_plot.apply(lambda x: x['DSP_LOCN']*100/x['Max Occupancy'], axis = 1)
     df_plot = df_plot[['REF_FIELD1','Ratio','Date File created']]
-    df_plot.plot(kind='bar',ax=axes[i],x='Date File created')
+    df_plot.plot(kind = 'bar', ax = axes[i], x = 'Date File created')
     axes[i].set_xlabel('')
-    axes[i].axhline(y=100, color='r',label='100% occupancy')
-    axes[i].axhline(y=df_plot['Ratio'].mean()\
-                    , color='g',label = f"average occupancy: {round(df_plot['Ratio'].mean())} %")
-    axes[i].legend(loc ='lower left')
+    axes[i].axhline(y = 100, color = 'r',label = '100% occupancy')
+    axes[i].axhline(y = df_plot['Ratio'].mean()\
+                    , color ='g',label = f"average occupancy: {round(df_plot['Ratio'].mean())} %")
+    axes[i].legend(loc = 'lower left')
     axes[i].set_title(f"{ref}")
     
-    i+=1
+    i += 1
 ```
