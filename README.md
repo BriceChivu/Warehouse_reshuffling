@@ -118,3 +118,6 @@ As shown on the graphs, the "Mixed Brands" group is the most critical overflow b
 One can also note the presence of excessive vacant space for Kiehls and Shu Uemura. 
 
 To conclude, the warehouse housekeeping should make sure to allocate more locations to "Mixed Brands" and less to Kiehls and Shu Uemura.
+
+
+Thanks for reading!
