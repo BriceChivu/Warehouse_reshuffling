@@ -110,3 +110,8 @@ for ref in list(df_concat_filtered['REF_FIELD1'].unique()):
     i += 1
 ```
 <img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/Brands occupancy analysis.png" alt="alt text" width="733" height="2094"> <br/>
+
+As shown on the graphs, the "Mixed Brands" group is the most critical overflow by far! YSL is also jammed but remains manageable. <br/>
+One can also note the presence of excessive vacant space for Kiehls and Shu Uemura. 
+
+To conclude, the warehouse housekeeping should make sure to allocate more locations to "Mixed Brands" and less to Kiehls and Shu Uemura.
