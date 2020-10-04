@@ -62,6 +62,12 @@ df_concat_filtered = df_concat_filtered.loc[(df_concat_filtered['INVENTORY_TYPE'
 df_concat_filtered = df_concat_filtered[['REF_FIELD1','DSP_LOCN','ITEM_NAME','SALE_GRP','Date File created']]
 df_concat_filtered = df_concat_filtered.reset_index(drop = True)
 ```
+```ruby
+# Taking a look at our final dataframe
+
+df_concat_filtered.head()
+```
+<img src="https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/df_concat_filtered.png" alt="alt text" width="500" height="200"> <br/>
 Great! We have now a big dataframe df_concat_filtered containing all the different snapshots. Next, in order to get the occupancy ratio, we need to have the master file with the maximum occupancy originally allocated for each brand. Let's create this dataframe.
 
 ```ruby
