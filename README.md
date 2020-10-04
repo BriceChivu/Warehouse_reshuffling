@@ -77,7 +77,11 @@ Great! We have now a big dataframe df_concat_filtered containing all the differe
 data = pd.DataFrame({'REF_FIELD1':['Mixed Brands','BIOTHERM','SHU UEMURA','YSL','G.ARMANI','KIEHLS',\
                                    'LANCOME',"L'OREAL PARIS"],'Max Occupancy':[1540,1491,1190,2156,1652,3948,5087,4533]})
 ```
+```ruby
+# Taking a look at the master dataframe
 
+df_master
+```
 Finally, we will plot a bar graph for each brand to show this evolution of the ratio occupancy.
 
 ```ruby
