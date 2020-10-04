@@ -22,7 +22,6 @@ I gathered few snapshots of the inventory for each month and combined them into 
 
 ```ruby
 # Reading all the snapshots inventory and creating the dictionnary d_init to store them
-# Reading all the snapshots inventory and creating the dictionnary d_init to store them
 
 path = "C:\\Users\\btg168\\Desktop\\Inventory reports test\\"
 d_init={}
