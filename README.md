@@ -22,6 +22,8 @@ I gathered few snapshots of the inventory for each month and combined them into 
 
 ```ruby
 # Reading all the snapshots inventory and creating the dictionnary d_init to store them
+# Reading all the snapshots inventory and creating the dictionnary d_init to store them
+
 path = "C:\\Users\\btg168\\Desktop\\Inventory reports test\\"
 d_init={}
 
@@ -33,14 +35,16 @@ for file in os.listdir(path):
 ```
 ```ruby
 # Concatenating all the dataframes from the dictionnary into one big dataframe called df_concat_raw
+
 df_concat_raw = pd.concat(d_init.values())
 ```
 ```ruby
+# Cleaning the dataframe
 
 df_concat_filtered = df_concat_raw.merge(df_shelv,on='DSP_LOCN',how='left')
 df_concat_filtered = df_concat_filtered.merge(df_S_NS,on='ITEM_NAME',how='left' )
-df_concat_filtered = df_concat_filtered.merge(df_FPE[['DSP_LOCN','HP/FP']],on='DSP_LOCN',how='left' )
 df_concat_filtered.dropna(subset=['DSP_LOCN'],inplace=True)
+# Regrouping small brands into the group 'Mixed Brands'
 df_concat_filtered[['REF_FIELD1']] = df_concat_filtered['REF_FIELD1'].replace(to_replace=\
                                                                           ['HR','R. LAUREN','URBAN DECAY','KERASTASE',\
                                                                            'SKINCEUTICALS','Martin MARGIELA','VICHY',\
@@ -48,11 +52,14 @@ df_concat_filtered[['REF_FIELD1']] = df_concat_filtered['REF_FIELD1'].replace(to
                                                                            'ROCHE POSAY','HOUSE 99',\
                                                                            'IMARQUES INTER-DEPARTMENT','CLARISONIC']\
                                                                           ,value = 'Mixed Brands')
-df_concat_filtered['to keep'] = df_concat_filtered['DSP_LOCN'].apply(lambda x: False if len(x)-sum(c.isdigit() for c in x)>2 else True)
-df_concat_filtered = df_concat_filtered.loc[(df_concat_filtered.DSP_LOCN.str[:2] != 'LT')\
-                                        & (df_concat_filtered['INVENTORY_TYPE']=='U') & (df_concat_filtered['ZINDEX']==1)\
-                                        & (df_concat_filtered['Shelving'].isna()) & (df_concat_filtered['to keep']== True)\
-                                        & (df_concat_filtered.DSP_LOCN.str[:1] == '4')\
-                                        & (df_concat_filtered['REF_FIELD1'] != "L'OREAL PARIS")]
-df_concat_filtered = df_concat_filtered[['REF_FIELD1','DSP_LOCN','ITEM_NAME','SALE_GRP','Date File created','HP/FP']]
+# Creating a new column to spot locations that have more than 1 letter like '6STAGE0404', '4COPACKR01', or 'LT00002524'
+df_concat_filtered['to keep'] = df_concat_filtered['DSP_LOCN'].apply(lambda x: False if len(x)-sum(c.isdigit() for c in x)>1 else True)
+# Filtering the locations that are in the racks
+df_concat_filtered = df_concat_filtered.loc[(df_concat_filtered['INVENTORY_TYPE']=='U') \
+                                            & (df_concat_filtered['ZINDEX']==1)\
+                                            & (df_concat_filtered['Shelving'].isna()) & (df_concat_filtered['to keep']== True)\
+                                            & (df_concat_filtered.DSP_LOCN.str[:1] == '4')\
+                                            & (df_concat_filtered['REF_FIELD1'] != "L'OREAL PARIS")]
+df_concat_filtered = df_concat_filtered[['REF_FIELD1','DSP_LOCN','ITEM_NAME','SALE_GRP','Date File created']]
+df_concat_filtered = df_concat_filtered.reset_index(drop=True)
 ```
