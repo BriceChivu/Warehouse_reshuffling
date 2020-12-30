@@ -11,7 +11,7 @@ Before diving into the analysis, let's first understand how the warehouse is arr
 ![Settings Window](https://github.com/BriceChivu/Data-Warehouse-visualization/blob/master/layout%20lvl4%20screenshot.png) <br/>
 *The picture above shows a section of the warehouse layout*
 
-Each aisle has of two sides: even (left) and odd (right). Each of those sides are made of numerous bays (around 14), each bay has several levels (around 10), and each level is made of few positions (mostly 3). <br/>
+Each aisle has two sides: even (left) and odd (right). Each of those sides are made of numerous bays (around 14), each bay has several levels (around 10), and each level is made of few positions (mostly 3). <br/>
 >The aisle 4P17 for example has 28 bays (from 03 to 30). Its even bays have 9 levels with 3 positions each, its odd bays have 10 levels with 3 positions each, counting for 798 locations in total. Therefore, the aisle 4P17 can host up to 798 pallets.
 
 ### 3. Data Analysis
